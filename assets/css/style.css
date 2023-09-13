@@ -11,7 +11,8 @@
 body {
   background: #f7fbff;
   /*color: #898989;*/
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
   font-family: "Poppins", helvetica;
   font-size: 15px;
   font-weight: 300;
@@ -27,7 +28,7 @@ body {
 #deebf7
 #74a9cf
 #2b8cbe
-#08306b dark blue
+#08306b dark blue --> #6f3b23, ligher #c1610c
 #f7fbff
 #c6dbef
 #9ecae1
@@ -52,20 +53,23 @@ h1, h2, h3, h4, h5, h6 {
 
 h2 {
   /*color: #292929;*/
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
   font-weight: 600;
 }
 
 h4 {
   /*color: #292929;*/
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
   font-size: 14px;
   font-weight: 600;
 }
 
 a {
   /*color: #292929;*/
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
   text-decoration: none !important;
   transition: all 0.5s ease-in-out 0s;
 }
@@ -79,19 +83,20 @@ p {
   padding: 0;
   font-size: 15px;
   /*color: #9ecae1999;*/
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
   line-height: 28px;
 }
 
 ::-moz-selection {
   /*background: #4292c6;*/
-  background: 4292c6;
+  background: #6f3b23;
   color: #f7fbff;
 }
 
 ::selection {
   /*background: #4292c6;*/
-  background: 4292c6;
+  background: #6f3b23;
   color: #f7fbff;
 }
 
@@ -100,7 +105,8 @@ p {
   border: medium none;
   border-radius: 0;
   /*color: #f7fbff;*/
-  color: #0571b0;
+/*  color: #0571b0;*/
+  color: #6f3b23;
   font-size: 12px;
   height: 50px;
   line-height: 50px;
@@ -182,7 +188,8 @@ p {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #4292c6;
+/*  background: #4292c6;*/
+  background: #c1610c;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -265,7 +272,8 @@ p {
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
-  color: #7e7d7d;
+/*  color: #7e7d7d;*/
+  color: #c1610c;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -287,7 +295,8 @@ p {
   z-index: 99;
   opacity: 0;
   visibility: hidden;
-  background: #f7fbff;
+/*  background: #f7fbff;*/
+  background:#e4cfaf;
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
   transition: 0.3s;
 }
@@ -525,13 +534,14 @@ p {
   width: 100%;
   height: auto;
   /*background: #f7fbff;*/
-  background: #deebf7;
+/*  background: #deebf7;*/
+  background: #e4cfaf;
   padding-top: 120px;
 }
 
 #about .div-img-bg {
   padding-bottom: 30px;
-  border: 20px solid #4292c6;
+  border: 20px solid #6f3b23;
 }
 
 #about .div-img-bg .about-img img {
@@ -631,7 +641,8 @@ p {
   transition: all 0.3s ease-in-out;
 }
 #portfolio #portfolio-flters li:hover, #portfolio #portfolio-flters li.filter-active {
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
 }
 #portfolio #portfolio-flters li:last-child {
   margin-right: 0;
@@ -647,7 +658,8 @@ p {
   bottom: 0;
   z-index: 3;
   transition: all ease-in-out 0.3s;
-  background: rgba(255, 255, 255, 0.9);
+/*  background: rgba(255, 255, 255, 0.9);*/
+  background: #F6F0E7;
   padding: 15px;
 }
 #portfolio .portfolio-item .portfolio-info h4 {
@@ -696,12 +708,14 @@ p {
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
-  background-color: #f7fbff;
+/*  background-color: #f7fbff;*/
+  background-color: #F6F0E7;
   opacity: 1;
   border: 1px solid #4292c6;
 }
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #4292c6;
+/*  background-color: #4292c6;*/
+  background-color: #F6F0E7;
 }
 .portfolio-details .portfolio-info {
   padding: 30px;
@@ -740,13 +754,15 @@ p {
 #journal, #journal-blog {
   height: auto;
   width: 100%;
-  background: #f7fbff;
+/*  background: #f7fbff;*/
+  background: #F6F0E7;
   padding-bottom: 60px;
   position: relative;
 }
 
 #journal-blog {
-  background: #f7fbff;
+/*  background: #f7fbff;*/
+  background: #F6F0E7;
   padding-bottom: 30px;
 }
 
@@ -776,12 +792,14 @@ p {
   margin: 0 0 13px 0;
   font-weight: 500;
   /*color: #292929;*/
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
   transition: all 0.5s ease-in-out 0s;
 }
 
 .journal-block .journal-info .journal-txt h4 a:hover {
-  color: #08306b;
+/*  color: #08306b;*/
+  color: #6f3b23;
   transition: all 0.5s ease-in-out 0s;
 }
 
@@ -893,7 +911,8 @@ p {
 
 /* main content */
 .main-content {
-  background: #f7fbff;
+/*  background: #f7fbff;*/
+  background: #F6F0E7; 
 }
 
 .main-content .container-main {
@@ -907,7 +926,8 @@ p {
 }
 
 .container-main .block-main .content-main {
-  background: #f7fbff none repeat scroll 0 0;
+/*  background: #f7fbff none repeat scroll 0 0;*/
+  background: ##F6F0E7 none repeat scroll 0 0;
   display: inline-block;
   width: 100%;
 }
@@ -1014,7 +1034,8 @@ blockquote {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #f7fbff;
+/*  background: #f7fbff;*/
+  background:   #F6F0E7;
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -1037,7 +1058,8 @@ blockquote {
 
 #footer .socials-media ul li a {
   font-size: 24px;
-  color: #9ecae1;
+/*  color: #9ecae1;*/
+  color: #c1610c  ;
   letter-spacing: 0.1em;
   font-weight: 500;
   background: transparent;
