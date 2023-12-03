@@ -50,7 +50,7 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="" href="../AI.html">Home</a></li>
-          <li><a class="active" href="../AI/features.html">Features</a></li>
+          <li><a class="active" href="../AI/features.html">Architecture and safety</a></li>
           <li><a href="../AI/pricing.html">Pricing</a></li>
           <!-- <li><a href="blog.html">Blog</a></li> -->
           <!--<li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
@@ -110,16 +110,17 @@
 
     </section>
 
-    <section class="section pb-0">
+    <section class="section">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-4 me-auto">
-            <h2 class="mb-4">Speaker identification</h2>
-            <p class="mb-4">Using an opensource speaker identification model from the huggingface hub, my program differentiates the different speakers in the audiofile. Best performance is achieved when the number of speakers is defined beforehand. During the process, we will keep in touch to make sure all speakers are given their appropriate names and titles in the final product.</p>
-            <!-- <p><a href="#">Read More</a></p> -->
+            <h2 class="mb-4">Local architecture</h2>
+            <p class="mb-4">The framework is built and operated on my own laptop. All models are downloaded locally, omitting the need for information to be sent to a remote server or other third parties. No single file will ever leave my laptop. If requested, the program can also be operated on a different machine.</p>
+            <p><a href="features.html" class="btn btn-primary">Learn more</a></p>
           </div>
           <div class="col-md-6" data-aos="fade-left">
-            <img src="assets/img/micro.png" alt="Image" class="img-fluid">
+            <!-- <img src="AI/ts/img/undraw_svg_2.svg" alt="Image" class="img-fluid"> -->
+            <img src="assets/img/arch3.png" alt="Image" class="img-fluid">
           </div>
         </div>
       </div>
@@ -129,27 +130,13 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-4 ms-auto order-2">
-            <h2 class="mb-4">Transcription</h2>
-            <p class="mb-4">After the speakers have been differentiated in the audiofile, the transcription will be made. OpenAI's opensource model Whisper ensures the best possible quality. <a href="https://github.com/openai/whisper/discussions/1762"> OpenAI reports</a> a WER of 4.1-9.3% for English and 5.2-4.3% for Dutch. Of course this is heavily dependent on the quality of the input. </p>
-            <p class="mb-4">A filter on very short fragments is applied in an effort to weed out all filler words. This results in a very clean an readable final report.</p>
-            <!-- <p><a href="https://github.com/openai/whisper/discussions/1762">Read More</a></p> -->
+            <h2 class="mb-4">Safety</h2>
+            <p class="mb-4">Running on a Linux (Unix based) operating systems, my computer is less vulnerable for online threats. For bigger projects, my own external GPU will crack the numbers, and no cloud GPU's will be accessed. The latest Anti virus-software will be used at all times. All used python packages are weekly audited for vulnurabilities. See the latest audit report here -link-. </p>
+            <p><a href="features.html" class="btn btn-primary">Learn more</a></p>
           </div>
           <div class="col-md-6" data-aos="fade-right">
-            <img src="assets/img/Transcr.png" alt="Image" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section pb-0">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-4 me-auto">
-            <h2 class="mb-4">Presentation</h2>
-            <p class="mb-4">Forget a boring document. Conversations are most comfortable read like a chat, and the transcriptions will be formatted like one as well. <a href="#">See an example here</a>. Of course it is still possible to get the transcription in a .doc or .pdf format.</p>
-          </div>
-          <div class="col-md-6" data-aos="fade-left">
-            <img src="assets/img/star.png" alt="Image" class="img-fluid">
+            <!-- <img src="assets/img/undraw_svg_3.svg" alt="Image" class="img-fluid"> -->
+            <img src="assets/img/safety2.png" alt="Image" class="img-fluid">
           </div>
         </div>
       </div>
