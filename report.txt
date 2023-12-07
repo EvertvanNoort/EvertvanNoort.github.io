@@ -1,0 +1,28 @@
+Name    Version ID             Fix Versions
+------- ------- -------------- ------------
+numexpr 2.8.7   PYSEC-2023-163
+Name                    Skip Reason
+----------------------- ---------------------------------------------------------------------------------------
+apturl                  Dependency not found on PyPI and could not be audited: apturl (0.5.2)
+brlapi                  Dependency not found on PyPI and could not be audited: brlapi (0.8.3)
+clip                    Dependency not found on PyPI and could not be audited: clip (1.0)
+command-not-found       Dependency not found on PyPI and could not be audited: command-not-found (0.3)
+cupshelpers             Dependency not found on PyPI and could not be audited: cupshelpers (1.0)
+defer                   Dependency not found on PyPI and could not be audited: defer (1.0.6)
+distro-info             Dependency not found on PyPI and could not be audited: distro-info (1.1+ubuntu0.1)
+en-core-web-sm          Dependency not found on PyPI and could not be audited: en-core-web-sm (3.7.0)
+gpg                     Dependency not found on PyPI and could not be audited: gpg (1.16.0)
+language-selector       Dependency not found on PyPI and could not be audited: language-selector (0.1)
+libcomps                Dependency not found on PyPI and could not be audited: libcomps (0.1.15)
+louis                   Dependency not found on PyPI and could not be audited: louis (3.20.0)
+peft                    Dependency not found on PyPI and could not be audited: peft (0.6.0.dev0)
+python-apt              Dependency not found on PyPI and could not be audited: python-apt (2.4.0+ubuntu2)
+python-debian           Dependency not found on PyPI and could not be audited: python-debian (0.1.43+ubuntu1.1)
+rpm                     Dependency not found on PyPI and could not be audited: rpm (4.17.0)
+screen-resolution-extra Dependency not found on PyPI and could not be audited: screen-resolution-extra (0.0.0)
+ubuntu-advantage-tools  Dependency not found on PyPI and could not be audited: ubuntu-advantage-tools (8001)
+ubuntu-drivers-common   Dependency not found on PyPI and could not be audited: ubuntu-drivers-common (0.0.0)
+ufw                     Dependency not found on PyPI and could not be audited: ufw (0.36.1)
+unattended-upgrades     Dependency not found on PyPI and could not be audited: unattended-upgrades (0.1)
+xformers                Dependency not found on PyPI and could not be audited: xformers (0.0.22.dev597)
+xkit                    Dependency not found on PyPI and could not be audited: xkit (0.0.0)
