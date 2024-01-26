@@ -1,24 +1,24 @@
 +==============================================================================+
 
-                                   /$$$$$$            /$$
-                                  /$$__  $$          | $$
-               /$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$
-              /$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$
-             |  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$
-              \____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$
-              /$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$
-             |_______/  \_______/|__/     \_______/   \___/   \____  $$
-                                                              /$$  | $$
-                                                             |  $$$$$$/
-      by pyup.io                                              \______/
+                               /$$$$$$            /$$
+                              /$$__  $$          | $$
+           /$$$$$$$  /$$$$$$ | $$  \__//$$$$$$  /$$$$$$   /$$   /$$
+          /$$_____/ |____  $$| $$$$   /$$__  $$|_  $$_/  | $$  | $$
+         |  $$$$$$   /$$$$$$$| $$_/  | $$$$$$$$  | $$    | $$  | $$
+          \____  $$ /$$__  $$| $$    | $$_____/  | $$ /$$| $$  | $$
+          /$$$$$$$/|  $$$$$$$| $$    |  $$$$$$$  |  $$$$/|  $$$$$$$
+         |_______/  \_______/|__/     \_______/   \___/   \____  $$
+                                                          /$$  | $$
+                                                         |  $$$$$$/
+  by pyup.io                                              \______/
 
 +==============================================================================+
 
- REPORT 
+ REPORT
 
-  Safety is using PyUp's free open-source vulnerability database. This
-data is 30 days old and limited. 
-  For real-time enhanced vulnerability data, fix recommendations, severity
+Safety is using PyUp's free open-source vulnerability database. This
+data is 30 days old and limited.
+For real-time enhanced vulnerability data, fix recommendations, severity
 reporting, cybersecurity support, team and project policy management and more
 sign up at https://pyup.io or email sales@pyup.io
 
@@ -29,20 +29,19 @@ sign up at https://pyup.io or email sales@pyup.io
   -> /home/evert/.local/lib/python3.10/site-packages
 
   Using non-commercial database
-  Found and scanned 418 packages
-  Timestamp 2023-12-18 17:11:11
+  Found and scanned 434 packages
+  Timestamp 2024-01-26 12:37:41
   0 vulnerabilities found
   0 vulnerabilities ignored
++==============================================================================+
+
+No known security vulnerabilities found. 
 
 +==============================================================================+
 
- No known security vulnerabilities found.
-
-+==============================================================================+
-
-  Safety is using PyUp's free open-source vulnerability database. This
-data is 30 days old and limited. 
-  For real-time enhanced vulnerability data, fix recommendations, severity
+Safety is using PyUp's free open-source vulnerability database. This
+data is 30 days old and limited.
+For real-time enhanced vulnerability data, fix recommendations, severity
 reporting, cybersecurity support, team and project policy management and more
 sign up at https://pyup.io or email sales@pyup.io
 
