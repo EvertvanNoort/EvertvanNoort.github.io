@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI powered transcription</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Major Mono Display", monospace;
+            background: linear-gradient(135deg, #6baed6, #bdd7e7);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px; /* Add some padding to the body */
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Use full width */
+            max-width: 600px;
+            margin: 20px 0; /* Add some margin for spacing */
+        }
+        h1, h2 {
+            font-size: 2em; /* Larger size for the main heading */
+            text-align: center;
+            color: #08306b;
+            margin-bottom: 15px; /* Increase margin-bottom for spacing */
+        }
+        h4 {
+            font-size: 1em; /* Medium size for subheadings */
+            text-align: left;
+            color: #08306b;
+            margin-bottom: 15px; /* Increase margin-bottom for spacing */
+        }
+        small {
+            font-size: 0.875em; /* Smaller size for supplementary text */
+            text-align: left;
+            color: #08306b;
+            display: block; /* Ensure it takes full width for better spacing */
+            margin-bottom: 15px; /* Increase margin-bottom for spacing */
+            margin-top: 10px; /* Increase margin-bottom for spacing */
+        }
+        .form-check {
+            margin-top: 20px;
+        }
+        .form-check-label, .form-check-label small {
+            color: #08306b;
+        }
+        .form-control {
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .language-select {
+            margin-top: 10px;
+        }
+        .btn-primary {
+            background-color: #3182bd;
+            border-color: #3182bd;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+        .btn-primary:hover {
+            background-color: #08519c;
+            border-color: #08519c;
+        }
+        .btn-file-label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<form id="uploadForm" enctype="multipart/form-data">
+    <h2>Audio transcriber</h2>
+    <h4>Upload your audio files and get excellent results in minutes! Transcriptions available in Dutch, English, German, Spanish, and more!</h4>
+
+    <div class="form-group">
+        <input type="email" name="email" class="form-control" placeholder="Email address" required>
+    </div>
+    <div class="form-group row">
+        <div class="col-12 col-md-8 mb-3 mb-md-0">
+            <button type="button" class="btn btn-primary btn-block uploadButton">Upload file</button>
+            <input type="file" name="file[]" class="form-control-file fileInput" style="display: none;" required>
+        </div>
+        <div class="col-12 col-md-4">
+            <select name="languages" class="form-control" required>
+                <option value="None">Detect</option>
+                <option value="dutch">Dutch</option>
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+                <option value="german">German</option>
+                <!-- Add more languages as needed -->
+            </select>
+        </div>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="testCheck" name="test">
+        <label class="form-check-label" for="testCheck"><h4>Test, process 20 seconds for free</h4></label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" id="submitButton">Pay and Process</button>
+    <small>By clicking the button you agree to pay and process. You accept the <a href="terms.html" target="_blank" style="color: #08306b; text-decoration: underline;">terms and conditions</a>. TL;DR: We don't save your files or email address and you can't get a refund if you don't test first. Servers are online on weekdays from 9-17.</small>
+    <div id="errorDisplay" style="color: red; margin-top: 10px;"></div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const backendUrl = "https://api.evertvannoort.ngrok.app";
+    const uploadForm = document.getElementById('uploadForm');
+    const submitButton = document.getElementById('submitButton');
+    const errorDisplay = document.getElementById('errorDisplay');
+
+    uploadForm.addEventListener('click', function(event) {
+        if (event.target.classList.contains('uploadButton')) {
+            const fileInput = event.target.nextElementSibling;
+            fileInput.click();
+        }
+    });
+
+    uploadForm.addEventListener('change', function(event) {
+        if (event.target.classList.contains('fileInput')) {
+            const uploadButton = event.target.previousElementSibling;
+            if (event.target.files.length > 0) {
+                uploadButton.textContent = `${event.target.files[0].name}`;
+            } else {
+                uploadButton.textContent = 'Upload file';
+            }
+
+            const newInputGroup = document.createElement('div');
+            newInputGroup.classList.add('form-group', 'row'); // Use Bootstrap's row for alignment
+
+            const fileInputDiv = document.createElement('div');
+            fileInputDiv.classList.add('col-12 col-md-8 mb-3 mb-md-0');
+            const newFileButton = document.createElement('button');
+            newFileButton.type = 'button';
+            newFileButton.classList.add('btn', 'btn-primary', 'btn-block', 'uploadButton');
+            newFileButton.textContent = 'Upload file';
+
+            const newFileInput = document.createElement('input');
+            newFileInput.type = 'file';
+            newFileInput.name = 'file[]';
+            newFileInput.classList.add('form-control-file', 'fileInput');
+            newFileInput.style.display = 'none';
+
+            fileInputDiv.appendChild(newFileButton);
+            fileInputDiv.appendChild(newFileInput);
+
+            const selectDiv = document.createElement('div');
+            selectDiv.classList.add('col-12 col-md-4');
+            const newSelect = document.createElement('select');
+            newSelect.name = 'languages';
+            newSelect.classList.add('form-control');
+            newSelect.innerHTML = `
+                <option value="None">Detect</option>
+                <option value="dutch">Dutch</option>
+                <option value="english">English</option>
+                <option value="spanish">Spanish</option>
+                <option value="german">German</option>
+            `;
+            selectDiv.appendChild(newSelect);
+
+            newInputGroup.appendChild(fileInputDiv);
+            newInputGroup.appendChild(selectDiv);
+
+            const formCheckDiv = this.querySelector('.form-check');
+            this.insertBefore(newInputGroup, formCheckDiv);
+        }
+    });
+
+    uploadForm.addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        submitButton.textContent = 'Uploading and determining price...'; // Change button text
+        submitButton.disabled = true; // Optionally disable button to prevent multiple submissions
+        errorDisplay.textContent = ''; // Clear any previous errors
+
+        const formData = new FormData(this);
+
+        // Collect all files
+        const fileInputs = this.querySelectorAll('input[type="file"]');
+        fileInputs.forEach((input) => {
+            if (input.files) {
+                Array.from(input.files).forEach(file => {
+                    formData.append('files', file);
+                });
+            }
+        });
+
+        // Append the 'test' field based on checkbox state
+        const testCheckbox = document.getElementById('testCheck');
+        formData.append('test', testCheckbox.checked ? 'true' : 'false');
+
+        try {
+            const uploadResponse = await fetch(`${backendUrl}/upload`, {
+                method: 'POST',
+                body: formData
+            });
+
+            const uploadData = await uploadResponse.json();
+            if (uploadResponse.ok) {
+                const paymentId = uploadData.paymentId; // Retrieve payment ID from the response
+
+                if (testCheckbox.checked) {
+                    // In test mode, redirect directly to success page
+                    window.location.href = 'https://www.evertvannoort.com/AI/success';
+                } else {
+                    const paymentResponse = await fetch(`${backendUrl}/create-payment/${paymentId}`, {
+                        headers: {
+                            'ngrok-skip-browser-warning': 'true'
+                        }
+                    });
+                    const paymentData = await paymentResponse.json();
+                    if (paymentResponse.ok && paymentData.checkoutUrl) {
+                        window.location.href = paymentData.checkoutUrl; // Redirect to the payment page
+                    } else {
+                        throw new Error(paymentData.message || 'Failed to initiate payment');
+                    }
+                }
+            } else {
+                throw new Error(uploadData.message || 'Failed to upload files');
+            }
+        } catch (error) {
+            console.error("Error during file upload and payment initiation:", error);
+            errorDisplay.textContent = error.message; // Display error message on the page
+            submitButton.textContent = 'Pay and Process'; // Reset button text if error
+            submitButton.disabled = false; // Re-enable button
+        }
+    });
+});
+</script>
+</body>
+</html>
