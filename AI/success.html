@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Success</title>
+    <title>Terms and Conditions</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: "Poppins", sans-serif;
-            background-image: url('hero-bg-old.png');
+/*            font-family: "Poppins", sans-serif;*/
+            font-family: "Major Mono Display", monospace;
+            background: linear-gradient(135deg, #6baed6, #bdd7e7);
             background-size: cover;
             background-position: center;
             display: flex;
@@ -16,33 +17,45 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: #004085; /* Bootstrap info color for a softer design */
         }
         .content {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 40px;
-            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 25px;
+            border-radius: 50px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        h1 {
+            font-size: 2em; /* Larger size for the main heading */
+            text-align: center;
+            color: #08306b;
+            margin-bottom: 15px; /* Increase margin-bottom for spacing */
+        }
+        p {
+            font-size: 1em;
+            text-align: justify;
+            color: #08306b;
+            margin-bottom: 15px; /* Increase margin-bottom for spacing */
         }
         .btn-home {
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff; /* Bootstrap primary color */
+            background-color: #3182bd;
+            border-color: #3182bd;
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
 <div class="content">
-    <h1>Payment Successful!</h1>
+    <h1>Success</h1>
     <p>Thank you for using our service. Please check your email for the results in a few minutes. Processing may take some time, so we appreciate your patience.</p>
-    <!-- <a href="https://evertvannoort.com/AI/" class="btn btn-home">Go to Home</a>  -->
-    <!-- Replace this link with your actual home link -->
+    <a href="phone.html" class="btn btn-home">Go Back</a> 
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
