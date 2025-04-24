@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Terms and Conditions - TranscribeForMe</title>
+    <meta name="title" content="Terms and Conditions - TranscribeForMe" id="metaTitle">
+    <meta name="description" content="Read the terms and conditions of TranscribeForMe." id="metaDescription">
+    <meta name="keywords" content="AI transcription, terms and conditions, data security, transcription service" id="metaKeywords">
+    <meta name="author" content="TranscribeForMe">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <link href="TranscribeForMe - AI Transcriptiedienst_files/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://transcribeforme.app/Favicon/apple-touch-icon.png">
+    <link rel="icon" href="https://transcribeforme.app/Favicon/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="https://transcribeforme.app/Favicon/site.webmanifest">
+
+    <!-- hreflang tags for language versions -->
+    <link rel="alternate" href="terms.html?lang=en" hreflang="en">
+    <link rel="alternate" href="terms.html?lang=nl" hreflang="nl">
+    <link rel="alternate" href="terms.html?lang=de" hreflang="de">
+</head>
+<body>
+<nav>
+    <a href="index.html" id="navHome">Home</a>
+    <a href="about.html" id="navAbout">About Us</a>
+    <a href="terms.html" id="navTerms">Terms and Conditions</a>
+</nav>
+
+<section class="wide-content" itemscope itemtype="http://schema.org/WebPage">
+    <h1 id="termsTitle">Terms and Conditions</h1>
+    <p id="termsDescription">Read the terms and conditions of TranscribeForMe.</p>
+
+    <h3 id="dataSecurityTitle">Data Security</h3>
+    <p id="dataSecurityDescription">We ensure the highest standards of data security for your transcriptions.</p>
+
+    <h3 id="serviceUsageTitle">Service Usage</h3>
+    <ul id="serviceUsagePoints">
+        <li>Users must agree to our terms before using the service.</li>
+        <li>Our service provides high accuracy for multiple languages.</li>
+        <li>All data is processed securely and not stored beyond the necessary time.</li>
+    </ul>
+
+    <h3 id="contactTitle">Contact</h3>
+    <p id="contactDescription">For any questions, contact us at <a href="mailto:ai@evertvannoort.com">ai@evertvannoort.com</a>.</p>
+
+    <a href="index.html" class="btn btn-primary" id="backButton">Back</a>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang') || 'en';
+
+    function updateLinks() {
+        const links = document.querySelectorAll('nav a, .btn-home');
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href.includes('?')) {
+                link.setAttribute('href', `${href}&lang=${lang}`);
+            } else {
+                link.setAttribute('href', `${href}?lang=${lang}`);
+            }
+        });
+    }
+
+    function loadLanguage(lang) {
+        fetch('lang.json')
+            .then(response => response.json())
+            .then(data => {
+                const strings = data[lang];
+                document.title = strings.terms.title;
+                document.getElementById('pageTitle').textContent = strings.terms.title;
+                document.getElementById('metaTitle').setAttribute('content', strings.terms.title);
+                document.getElementById('metaDescription').setAttribute('content', strings.terms.description);
+                document.getElementById('metaKeywords').setAttribute('content', strings.keywords);
+
+                // Update terms and conditions content
+                document.getElementById('termsTitle').textContent = strings.terms.title;
+                // document.getElementById('termsDescription').textContent = strings.terms.description;
+                // document.getElementById('dataSecurityTitle').textContent = strings.terms.data_security;
+                // document.getElementById('dataSecurityDescription').textContent = strings.terms.data_security_description;
+                document.getElementById('serviceUsageTitle').textContent = strings.terms.service_usage;
+                
+                const pointsList = document.getElementById('serviceUsagePoints');
+                pointsList.innerHTML = '';
+                strings.terms.service_usage_points.forEach(point => {
+                    const li = document.createElement('li');
+                    li.innerHTML = point;
+                    pointsList.appendChild(li);
+                });
+
+                document.getElementById('contactTitle').textContent = strings.terms.contact;
+                document.getElementById('contactDescription').innerHTML = strings.terms.contact_description;
+                document.getElementById('backButton').textContent = strings.terms.back;
+
+                // Update navigation menu text
+                document.getElementById('navHome').textContent = strings.menu.home;
+                document.getElementById('navAbout').textContent = strings.menu.about;
+                document.getElementById('navTerms').textContent = strings.menu.terms;
+            })
+            .catch(error => console.error('Error loading language file:', error));
+    }
+
+    updateLinks();
+    loadLanguage(lang);
+});
+</script>
+</body>
+</html>

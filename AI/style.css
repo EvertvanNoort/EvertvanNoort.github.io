@@ -1,0 +1,151 @@
+body {
+    font-family: "Ubuntu Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    background: linear-gradient(135deg, #6baed6, #bdd7e7);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+/*    offset-position: top;*/
+/*    top: 100px;*/
+}
+
+nav {
+    position: absolute;
+    top: 25px;
+    right: 50px;
+}
+
+nav a {
+    font-size: 0.875em;
+    color: #08306b;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+form, .content, .wide-content {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin-top: 100px;
+}
+
+.wide-content {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1200px;
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+h1 {
+    font-size: 1.75em;
+    text-align: center;
+    color: #08306b;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 0.875em;
+    text-align: left;
+    color: #08306b;
+    margin-bottom: 0px;
+}
+
+h3 {
+    font-size: 1.5em;
+    text-align: left;
+    color: #08306b;
+    margin-bottom: 0px;
+}
+
+h4 {
+    font-size: 1em;
+    text-align: left;
+    color: #08306b;
+/*    font-weight: 400;*/
+    margin-bottom: 15px;
+}
+
+text, p, li {
+    font-size: 1em;
+    text-align: left;
+    color: #08306b;
+    margin-bottom: 15px;
+}
+
+small {
+    font-size: 0.875em;
+    text-align: left;
+    color: #08306b;
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+p, li {
+    font-size: 0.875em;
+    text-align: justify;
+    color: #08306b;
+    margin-bottom: 15px;
+}
+
+.form-check {
+    margin-top: 20px;
+}
+
+.form-check-label, .form-check-label small {
+    color: #08306b;
+}
+
+.form-control {
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.language-select {
+    margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #3182bd;
+    border-color: #3182bd;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    background-color: #08519c;
+    border-color: #08519c;
+}
+
+.btn-file-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.content {
+    max-width: 1200px;
+    overflow-y: auto;
+    max-height: 80vh;
+}

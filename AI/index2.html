@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Service">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">TranscribeForMe - AI Transcriptiedienst</title>
+    <meta name="title" content="TranscribeForMe - AI Transcriptiedienst" id="metaTitle">
+    <meta name="description" content="Upload je audio bestanden en ontvang nauwkeurige transcripties binnen enkele minuten. Beschikbaar in het Nederlands, Engels, Duits, Spaans en meer. Slechts €0,60 per minuut!" id="metaDescription">
+    <meta name="keywords" content="AI transcriptie, audio naar tekst, betaalbare transcriptie, Nederlandse transcriptie, Engelse transcriptie, Duitse transcriptie, Spaanse transcriptie" id="metaKeywords">
+    <meta name="author" content="TranscribeForMe">
+    <meta name="robots" content="index, follow">
+    <link href="./style.css" rel="stylesheet">
+    <link rel="icon" href="https://transcribeforme.app/Favicon/favicon.ico" type="image/x-icon">
+</head>
+<body>
+<nav>
+    <a href="index.html" id="navHome">Home</a>
+    <a href="about.html" id="navAbout">Over ons</a>
+    <a href="terms.html" id="navTerms">Algemene voorwaarden</a>
+    <a href="product.zip" id="navProduct">Product</a>
+</nav>
+
+<form id="uploadForm" enctype="multipart/form-data" itemscope itemtype="http://schema.org/Service">
+    <h1 id="formTitle">TranscribeForMe</h1>
+    <p id="formDescription">Upload je audio bestanden en krijg nauwkeurige transcripties binnen enkele minuten in je mailbox! Beschikbaar in het Nederlands, Engels, Duits, Spaans en meer, voor slechts €0,60 per minuut!</p>
+
+    <div class="form-group">
+        <input type="email" name="email" class="form-control" placeholder="Email adres" required id="emailPlaceholder">
+    </div>
+    <div class="form-group row">
+        <div class="col-8">
+            <button type="button" class="btn btn-primary btn-block uploadButton" id="uploadButton">Upload bestand</button>
+            <input type="file" name="file[]" class="form-control-file fileInput" style="display: none;" required>
+        </div>
+        <div class="col-4">
+            <select name="languages" class="form-control" required id="languageSelect">
+                <option value="None" id="languageDetect">Detecteer</option>
+                <option value="dutch" id="langDutch">Nederlands</option>
+                <option value="english" id="langEnglish">Engels</option>
+                <option value="spanish" id="langSpanish">Spaans</option>
+                <option value="german" id="langGerman">Duits</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="testCheck" name="test">
+        <h2 id="testTranscription">Test, een gratis transcriptie van de eerste 20 seconden</h2>
+        <label class="form-check-label" for="testCheck"></label>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" id="submitButton">Betaal en Verwerk</button>
+    <small id="acceptTerms">Door op de knop te klikken, gaat u akkoord met het betalen en verwerken. U accepteert de <a href="terms.html" target="_blank">algemene voorwaarden</a>.</small>
+    <div id="errorDisplay" style="color: red; margin-top: 10px;"></div>
+    <div id="serverError" style="color: red; margin-top: 10px;"></div>
+</form>
+
+<script>
+    const backendUrl = "https://22aa-188-89-46-148.ngrok-free.app"; // Update with your NGROK URL
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const uploadForm = document.getElementById('uploadForm');
+        const submitButton = document.getElementById('submitButton');
+        const errorDisplay = document.getElementById('errorDisplay');
+        const serverError = document.getElementById('serverError');
+
+        uploadForm.addEventListener('click', function(event) {
+            if (event.target.classList.contains('uploadButton')) {
+                const fileInput = event.target.nextElementSibling;
+                fileInput.click();
+            }
+        });
+
+        uploadForm.addEventListener('change', function(event) {
+            if (event.target.classList.contains('fileInput')) {
+                const uploadButton = event.target.previousElementSibling;
+                uploadButton.textContent = event.target.files.length > 0 ? event.target.files[0].name : 'Upload bestand';
+            }
+        });
+
+        uploadForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            submitButton.textContent = 'Uploading...';
+            submitButton.disabled = true;
+            errorDisplay.textContent = '';
+
+            const formData = new FormData(uploadForm);
+
+            const fileInputs = uploadForm.querySelectorAll('input[type="file"]');
+            fileInputs.forEach((input) => {
+                if (input.files) {
+                    Array.from(input.files).forEach(file => formData.append('files', file));
+                }
+            });
+
+            const testCheckbox = document.getElementById('testCheck');
+            formData.append('test', testCheckbox.checked ? 'true' : 'false');
+
+            try {
+                const response = await fetch(`${backendUrl}/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    if (testCheckbox.checked) {
+                        window.location.href = 'success.html';
+                    } else {
+                        alert("File uploaded successfully: " + data.filePath);
+                    }
+                } else {
+                    throw new Error(data.message || 'Failed to upload');
+                }
+            } catch (error) {
+                if (error.message === 'Failed to fetch') {
+                    serverError.textContent = 'Server is not available. Please try again later.';
+                } else {
+                    errorDisplay.textContent = error.message;
+                }
+                console.error("Error:", error);
+            } finally {
+                submitButton.textContent = 'Betaal en Verwerk';
+                submitButton.disabled = false;
+            }
+        });
+    });
+</script>
+</body>
+</html>

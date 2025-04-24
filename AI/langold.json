@@ -1,0 +1,305 @@
+{
+    "en": {
+        "title": "TranscribeForMe - AI Transcription Service",
+        "description": "Upload your audio files and receive accurate transcriptions within minutes. Available in Dutch, English, German, Spanish, and more. Only €0.60 per minute!",
+        "keywords": "AI transcription, audio to text, affordable transcription, Dutch transcription, English transcription, German transcription, Spanish transcription",
+        "upload": "Upload file",
+        "email_placeholder": "Email address",
+        "language_detect": "Detect",
+        "languages": {
+            "dutch": "Dutch",
+            "english": "English",
+            "spanish": "Spanish",
+            "german": "German"
+        },
+        "test_transcription": "Test, a free transcription of the first 20 seconds",
+        "submit": "Pay and Process",
+        "terms": "general terms and conditions",
+        "accept_terms": "By clicking the button, you agree to pay and process. You accept the ",
+        "tldr": "TL;DR: We do not store your files or email address and you cannot get a refund if you do not test first.",
+        "menu": {
+            "home": "Home",
+            "about": "About Us",
+            "terms": "Terms and Conditions"
+        },
+        "about": {
+            "title": "About Us",
+            "description": "Welcome to TranscribeForMe, your reliable partner for fast and accurate transcription services. We understand how time-consuming and tedious it can be to process interviews, meetings, and other audio recordings. Existing speech-to-text methods often fail to deliver quality, especially in Dutch. The idea is simple: there had to be a solution that processes Dutch well and distinguishes between different speakers. With various open-source AI models, we have succeeded!",
+            "data_security": "Data Security",
+            "data_security_description": "Transcription services often use APIs from American tech companies. This makes it difficult for many people to use the service as it may not comply with data security guidelines. Since we are based in the Netherlands, have our servers here, and do not store user data, we often comply with these guidelines.",
+            "why_choose_us": "Why Choose Us?",
+            "why_choose_us_points": [
+                "Advanced Technology: We use the latest AI models for accurate and fast transcriptions.",
+                "Multiple Languages: We support transcriptions in various languages, including Dutch, English, German, and Spanish.",
+                "Affordable Prices: You only pay €0.60 per minute!",
+                "Data Security: We do not store anything."
+            ],
+            "contact": "Contact",
+            "contact_description": "Do you have questions or want more information? Feel free to contact us via <a href=\"mailto:ai@evertvannoort.com\">ai@evertvannoort.com</a>. We are ready to help you!",
+            "back": "Back"
+        },
+        "terms": {
+            "title": "Terms and Conditions - TranscribeForMe",
+            "description": "Read the terms and conditions of TranscribeForMe.",
+            "data_security": "Data Security",
+            "data_security_description": "We ensure the highest standards of data security for your transcriptions.",
+            "service_usage": "Terms and Conditions",
+            "service_usage_sections": [
+                {
+                    "title": "Email Privacy",
+                    "description": "We do not store your email address. Your privacy is of the utmost importance to us. Your email address is only used for communication related to the service you requested."
+                },
+                {
+                    "title": "File Deletion",
+                    "description": "Files are deleted immediately after transcription. We do not keep copies of your files. This ensures that your data remains confidential and is not stored on our servers after the transcription service is completed."
+                },
+                {
+                    "title": "Test and Refund Policy",
+                    "description": "You must test the service by processing the first 20 seconds for free. No refunds will be given if you do not test the service first. This policy is designed to ensure customer satisfaction with our service before a purchase is made."
+                },
+                {
+                    "title": "User Obligations",
+                    "description": "By using our service, you agree not to upload any illegal or prohibited content. You are responsible for ensuring that the content you upload complies with all applicable laws and regulations."
+                },
+                {
+                    "title": "Limitation of Liability",
+                    "description": "Our service is provided 'as is' without any warranty, express or implied. We cannot guarantee the accuracy, completeness, or usefulness of the transcriptions. We are not liable for any damages resulting from the use of our service, including but not limited to direct, indirect, incidental, punitive, and consequential damages."
+                },
+                {
+                    "title": "Changes to the Terms",
+                    "description": "We reserve the right to modify these terms and conditions at any time. Any changes will take effect immediately upon posting on our website. Continued use of the service indicates acceptance of the revised terms and conditions."
+                },
+                {
+                    "title": "Governing Law",
+                    "description": "These terms and conditions are governed by and construed in accordance with the laws of the Netherlands. Any disputes arising out of or related to these terms and conditions are subject to the exclusive jurisdiction of the courts of the Netherlands."
+                },
+                {
+                    "title": "Price Changes",
+                    "description": "We reserve the right to increase the price of our services in the future. Any changes in prices will be communicated to existing users before they take effect and will be updated on our website."
+                },
+                {
+                    "title": "Service Availability",
+                    "description": "For environmental reasons, our servers are online on weekdays from 9:00 AM to 5:00 PM CET. Please plan your use of the service accordingly."
+                },
+                {
+                    "title": "GDPR Compliance",
+                    "description": "Data Controller: Evert van Noort Muziek is the data controller responsible for the processing of your personal data.",
+                    "points": [
+                        "Data Collection and Use: We collect and use your email address solely to communicate with you about the service you requested. We do not store your email address after the communication is completed.",
+                        "Legal Basis for Processing: The legal basis for processing your personal data is your consent, which you provide when you use our service.",
+                        "Data Protection: We implement appropriate technical and organizational measures to protect your personal data from unauthorized access, disclosure, alteration, or destruction."
+                    ]
+                },
+                {
+                    "title": "Use of Open Source AI Models",
+                    "description": "Our transcription services use open-source AI models, including Pyannote and Whisper. While these models are powerful tools for transcription, we are not responsible for any data breaches or leaks that may occur as a result of their use. By using our service, you agree that we cannot be held liable for such incidents."
+                }
+            ],
+            "contact": "Contact",
+            "contact_description": "For any questions, contact us at <a href='mailto:ai@evertvannoort.com'>ai@evertvannoort.com</a>.",
+            "back": "Back"
+        }
+    },
+    "nl": {
+        "title": "TranscribeForMe - AI Transcriptiedienst",
+        "description": "Upload je audio bestanden en ontvang nauwkeurige transcripties binnen enkele minuten. Beschikbaar in het Nederlands, Engels, Duits, Spaans en meer. Slechts €0,60 per minuut!",
+        "keywords": "AI transcriptie, audio naar tekst, betaalbare transcriptie, Nederlandse transcriptie, Engelse transcriptie, Duitse transcriptie, Spaanse transcriptie",
+        "upload": "Upload bestand",
+        "email_placeholder": "Email adres",
+        "language_detect": "Detecteer",
+        "languages": {
+            "dutch": "Nederlands",
+            "english": "Engels",
+            "spanish": "Spaans",
+            "german": "Duits"
+        },
+        "test_transcription": "Test, een gratis transcriptie van de eerste 20 seconden",
+        "submit": "Betaal en Verwerk",
+        "terms_new": "Algemene voorwaarden",
+        "accept_terms": "Door op de knop te klikken, gaat u akkoord met het betalen en verwerken. U accepteert de ",
+        "tldr": "TL;DR: We slaan uw bestanden of e-mailadres niet op en u kunt geen terugbetaling krijgen als u niet eerst test.",
+        "menu": {
+            "home": "Home",
+            "about": "Over ons",
+            "terms": "Algemene voorwaarden"
+        },
+        "about": {
+            "title": "Over Ons",
+            "description": "Welkom bij TranscribeForMe, jouw betrouwbare partner voor snelle en nauwkeurige transcriptiediensten. Wij begrijpen hoe tijdrovend en saai het kan zijn om interviews, vergaderingen en andere audio-opnamen te verwerken. Natuurlijk bestaan er al manieren om spraak naar tekst om te zetten, maar de kwaliteit van het Nederlands is vaak teleurstellend. Het idee is simpel: er moest iets komen dat Nederlands goed verwerkt en onderscheid maakt tussen verschillende sprekers. Met verschillende opensource AI-modellen is het gelukt!",
+            "data_security": "Data Veiligheid",
+            "data_security_description": "Bij transcriptieservices wordt vaak gebruikgemaakt van API's van Amerikaanse techbedrijven. Dit maakt het voor veel mensen moeilijk om gebruik te maken van de service omdat het dan niet voldoet aan richtlijnen op het gebied van dataveiligheid. Omdat wij gevestigd zijn in Nederland, hier onze servers hebben en geen gebruikersgegevens opslaan, voldoen we vaak wél aan deze richtlijnen.",
+            "why_choose_us": "Waarom Kiezen Voor Ons?",
+            "why_choose_us_points": [
+                "Geavanceerde Technologie: Wij maken gebruik van de nieuwste AI-modellen voor nauwkeurige en snelle transcripties.",
+                "Meerdere Talen: Wij ondersteunen transcripties in verschillende talen, waaronder Nederlands, Engels, Duits en Spaans.",
+                "Betaalbare Prijzen: Je betaalt maar €0,60 per minuut!",
+                "Data Veiligheid: We bewaren helemaal niets."
+            ],
+            "contact": "Contact",
+            "contact_description": "Heb je vragen of wil je meer informatie? Neem gerust contact met ons op via <a href=\"mailto:ai@evertvannoort.com\">ai@evertvannoort.com</a>. We staan klaar om je te helpen!",
+            "back": "Terug"
+        },
+        "terms": {
+            "title": "Algemene voorwaarden - TranscribeForMe",
+            "description": "Lees de algemene voorwaarden van TranscribeForMe.",
+            "data_security": "Data Veiligheid",
+            "data_security_description": "We zorgen voor de hoogste normen van gegevensbeveiliging voor uw transcripties.",
+            "service_usage": "Algemene Voorwaarden",
+            "service_usage_sections": [
+                {
+                    "title": "Email Privacy",
+                    "description": "Wij slaan uw e-mailadres niet op. Uw privacy is voor ons van het grootste belang. Uw e-mailadres wordt uitsluitend gebruikt voor communicatie met betrekking tot de door u aangevraagde dienst."
+                },
+                {
+                    "title": "Bestand verwijderen",
+                    "description": "De bestanden worden onmiddellijk na transcriptie verwijderd. Wij bewaren geen kopieën van uw bestanden. Dit zorgt ervoor dat uw gegevens vertrouwelijk blijven en niet op onze servers worden opgeslagen nadat de transcriptieservice is voltooid."
+                },
+                {
+                    "title": "Test- en restitutiebeleid",
+                    "description": "U moet de service eerst testen door de eerste 20 seconden gratis te verwerken. Er wordt geen restitutie verleend als u de service niet eerst test. Dit beleid is opgesteld om de klanttevredenheid over onze service te garanderen voordat een aankoop wordt gedaan."
+                },
+                {
+                    "title": "Gebruikersverplichtingen",
+                    "description": "Door onze service te gebruiken, gaat u ermee akkoord geen illegale of verboden inhoud te uploaden. U bent ervoor verantwoordelijk dat de inhoud die u uploadt, voldoet aan alle toepasselijke wet- en regelgeving."
+                },
+                {
+                    "title": "Beperking van aansprakelijkheid",
+                    "description": "Onze service wordt geleverd 'as is' zonder enige garantie, expliciet of impliciet. Wij kunnen de juistheid, volledigheid of bruikbaarheid van de transcripties niet garanderen. Wij zijn niet aansprakelijk voor enige schade die voortvloeit uit het gebruik van onze service, inclusief maar niet beperkt tot directe, indirecte, incidentele schade, punitieve schade en gevolgschade."
+                },
+                {
+                    "title": "Wijzigingen in de voorwaarden",
+                    "description": "Wij behouden ons het recht voor om deze algemene voorwaarden op elk moment te wijzigen. Eventuele wijzigingen worden onmiddellijk van kracht zodra ze op onze website worden geplaatst. Als u de service blijft gebruiken, betekent dit dat u akkoord gaat met de herziene algemene voorwaarden."
+                },
+                {
+                    "title": "Toepasselijk recht",
+                    "description": "Deze algemene voorwaarden worden beheerst door en opgesteld in overeenstemming met de wetten van Nederland. Alle geschillen die voortvloeien uit of verband houden met deze algemene voorwaarden zijn onderworpen aan de exclusieve jurisdictie van de rechtbanken van Nederland."
+                },
+                {
+                    "title": "Prijswijzigingen",
+                    "description": "Wij behouden ons het recht voor om de prijs van onze diensten in de toekomst te verhogen. Eventuele wijzigingen in de prijzen zullen aan bestaande gebruikers worden gecommuniceerd voordat ze van kracht worden en zullen op onze website worden bijgewerkt."
+                },
+                {
+                    "title": "Beschikbaarheid van de dienst",
+                    "description": "Om milieuredenen zijn onze servers online op werkdagen van 9.00 tot 17.00 uur CET. Plan uw gebruik van de dienst dienovereenkomstig."
+                },
+                {
+                    "title": "AVG-naleving",
+                    "description": "Gegevensbeheerder: Evert van Noort Muziek is de gegevensbeheerder die verantwoordelijk is voor de verwerking van uw persoonsgegevens.",
+                    "points": [
+                        "Gegevensverzameling en -gebruik: Wij verzamelen en gebruiken uw e-mailadres uitsluitend om met u te communiceren over de door u gevraagde dienst. We slaan uw e-mailadres niet op nadat de communicatie is voltooid.",
+                        "Wettelijke basis voor verwerking: De wettelijke basis voor het verwerken van uw persoonlijke gegevens is uw toestemming, die u verstrekt wanneer u onze service gebruikt.",
+                        "Gegevensbescherming: Wij implementeren passende technische en organisatorische maatregelen om uw persoonlijke gegevens te beschermen tegen ongeoorloofde toegang, openbaarmaking, wijziging of vernietiging."
+                    ]
+                },
+                {
+                    "title": "Gebruik van open source AI-modellen",
+                    "description": "Onze transcriptiediensten maken gebruik van open-source AI-modellen, waaronder Pyannote en Whisper. Hoewel deze modellen krachtige hulpmiddelen voor transcriptie zijn, zijn wij niet verantwoordelijk voor eventuele datalekken of inbreuken die kunnen optreden als gevolg van het gebruik ervan. Door onze service te gebruiken, gaat u ermee akkoord dat wij niet verantwoordelijk kunnen worden gehouden voor dergelijke incidenten."
+                }
+            ],
+            "contact": "Contact",
+            "contact_description": "Voor vragen, neem contact met ons op via <a href='mailto:ai@evertvannoort.com'>ai@evertvannoort.com</a>.",
+            "back": "Terug"
+        }
+    },
+    "de": {
+        "title": "TranscribeForMe - KI Transkriptionen",
+        "description": "Laden Sie Ihre Audiodateien hoch und erhalten Sie innerhalb von Minuten genaue Transkriptionen. Verfügbar in Niederländisch, Englisch, Deutsch, Spanisch und mehr. Nur 0,60 € pro Minute!",
+        "keywords": "AI Transkription, Audio zu Text, erschwingliche Transkription, niederländische Transkription, englische Transkription, deutsche Transkription, spanische Transkription",
+        "upload": "Datei hochladen",
+        "email_placeholder": "E-Mail-Adresse",
+        "language_detect": "Erkennen",
+        "languages": {
+            "dutch": "Niederländisch",
+            "english": "Englisch",
+            "spanish": "Spanisch",
+            "german": "Deutsch"
+        },
+        "test_transcription": "Testen, eine kostenlose Transkription der ersten 20 Sekunden",
+        "submit": "Bezahlen und Verarbeiten",
+        "terms": "Allgemeine Geschäftsbedingungen",
+        "accept_terms": "Durch Klicken auf die Schaltfläche stimmen Sie zu, zu bezahlen und zu verarbeiten. Sie akzeptieren die ",
+        "tldr": "TL;DR: Wir speichern Ihre Dateien oder E-Mail-Adresse nicht und Sie können keine Rückerstattung erhalten, wenn Sie nicht zuerst testen.",
+        "menu": {
+            "home": "Startseite",
+            "about": "Über uns",
+            "terms": "AGB"
+        },
+        "about": {
+            "title": "Über uns",
+            "description": "Willkommen bei TranscribeForMe, Ihrem zuverlässigen Partner für schnelle und genaue Transkriptionsdienste. Wir verstehen, wie zeitaufwändig und mühsam es sein kann, Interviews, Besprechungen und andere Audioaufnahmen zu verarbeiten. Bestehende Methoden zur Sprach-zu-Text-Umwandlung liefern oft keine Qualität, insbesondere auf Niederländisch. Die Idee ist einfach: Es musste eine Lösung her, die Niederländisch gut verarbeitet und zwischen verschiedenen Sprechern unterscheidet. Mit verschiedenen Open-Source-AI-Modellen ist uns das gelungen!",
+            "data_security": "Datensicherheit",
+            "data_security_description": "Transkriptionsdienste verwenden oft APIs von amerikanischen Technologieunternehmen. Dies macht es vielen Menschen schwer, den Dienst zu nutzen, da er möglicherweise nicht den Datenschutzrichtlinien entspricht. Da wir in den Niederlanden ansässig sind, unsere Server hier haben und keine Benutzerdaten speichern, erfüllen wir oft diese Richtlinien.",
+            "why_choose_us": "Warum Uns Wählen?",
+            "why_choose_us_points": [
+                "Fortschrittliche Technologie: Wir verwenden die neuesten KI-Modelle für genaue und schnelle Transkriptionen.",
+                "Mehrere Sprachen: Wir unterstützen Transkriptionen in verschiedenen Sprachen, darunter Niederländisch, Englisch, Deutsch und Spanisch.",
+                "Erschwingliche Preise: Sie zahlen nur 0,60 € pro Minute!",
+                "Datensicherheit: Wir speichern nichts."
+            ],
+            "contact": "Kontakt",
+            "contact_description": "Haben Sie Fragen oder möchten Sie weitere Informationen? Kontaktieren Sie uns gerne unter <a href=\"mailto:ai@evertvannoort.com\">ai@evertvannoort.com</a>. Wir sind bereit, Ihnen zu helfen!",
+            "back": "Zurück"
+        },
+        "terms": {
+            "title": "Allgemeine Geschäftsbedingungen - TranscribeForMe",
+            "description": "Lesen Sie die Allgemeinen Geschäftsbedingungen von TranscribeForMe.",
+            "data_security": "Datensicherheit",
+            "data_security_description": "Wir gewährleisten die höchsten Standards der Datensicherheit für Ihre Transkriptionen.",
+            "service_usage": "Allgemeine Geschäftsbedingungen",
+            "service_usage_sections": [
+                {
+                    "title": "Email-Datenschutz",
+                    "description": "Wir speichern Ihre E-Mail-Adresse nicht. Ihre Privatsphäre ist für uns von größter Bedeutung. Ihre E-Mail-Adresse wird ausschließlich für die Kommunikation im Zusammenhang mit dem von Ihnen angeforderten Dienst verwendet."
+                },
+                {
+                    "title": "Dateilöschung",
+                    "description": "Dateien werden sofort nach der Transkription gelöscht. Wir bewahren keine Kopien Ihrer Dateien auf. Dies stellt sicher, dass Ihre Daten vertraulich bleiben und nach Abschluss des Transkriptionsdienstes nicht auf unseren Servern gespeichert werden."
+                },
+                {
+                    "title": "Test- und Rückgaberecht",
+                    "description": "Sie müssen den Dienst testen, indem Sie die ersten 20 Sekunden kostenlos verarbeiten. Es werden keine Rückerstattungen gewährt, wenn Sie den Dienst nicht zuerst testen. Diese Richtlinie wurde entwickelt, um die Kundenzufriedenheit mit unserem Dienst vor dem Kauf zu gewährleisten."
+                },
+                {
+                    "title": "Nutzerpflichten",
+                    "description": "Durch die Nutzung unseres Dienstes erklären Sie sich damit einverstanden, keine illegalen oder verbotenen Inhalte hochzuladen. Sie sind dafür verantwortlich, dass die von Ihnen hochgeladenen Inhalte allen geltenden Gesetzen und Vorschriften entsprechen."
+                },
+                {
+                    "title": "Haftungsbeschränkung",
+                    "description": "Unser Dienst wird 'wie besehen' ohne jegliche Garantie, ausdrücklich oder stillschweigend, bereitgestellt. Wir können die Genauigkeit, Vollständigkeit oder Nützlichkeit der Transkriptionen nicht garantieren. Wir haften nicht für Schäden, die aus der Nutzung unseres Dienstes resultieren, einschließlich, aber nicht beschränkt auf direkte, indirekte, zufällige Schäden, Strafschäden und Folgeschäden."
+                },
+                {
+                    "title": "Änderungen der Bedingungen",
+                    "description": "Wir behalten uns das Recht vor, diese Allgemeinen Geschäftsbedingungen jederzeit zu ändern. Änderungen werden sofort nach Veröffentlichung auf unserer Website wirksam. Die fortgesetzte Nutzung des Dienstes gilt als Zustimmung zu den geänderten Allgemeinen Geschäftsbedingungen."
+                },
+                {
+                    "title": "Anwendbares Recht",
+                    "description": "Diese Allgemeinen Geschäftsbedingungen unterliegen den Gesetzen der Niederlande und werden in Übereinstimmung mit diesen ausgelegt. Alle Streitigkeiten, die sich aus diesen Allgemeinen Geschäftsbedingungen ergeben oder damit in Zusammenhang stehen, unterliegen der ausschließlichen Gerichtsbarkeit der niederländischen Gerichte."
+                },
+                {
+                    "title": "Preisänderungen",
+                    "description": "Wir behalten uns das Recht vor, den Preis unserer Dienstleistungen in Zukunft zu erhöhen. Änderungen der Preise werden den bestehenden Nutzern vor Inkrafttreten mitgeteilt und auf unserer Website aktualisiert."
+                },
+                {
+                    "title": "Verfügbarkeit des Dienstes",
+                    "description": "Aus Umweltgründen sind unsere Server werktags von 9:00 bis 17:00 Uhr MEZ online. Bitte planen Sie Ihre Nutzung des Dienstes entsprechend."
+                },
+                {
+                    "title": "DSGVO-Konformität",
+                    "description": "Datenverantwortlicher: Evert van Noort Muziek ist der für die Verarbeitung Ihrer personenbezogenen Daten verantwortliche Datenverantwortliche.",
+                    "points": [
+                        "Datenerhebung und -nutzung: Wir erheben und verwenden Ihre E-Mail-Adresse ausschließlich zur Kommunikation mit Ihnen über den von Ihnen angeforderten Dienst. Wir speichern Ihre E-Mail-Adresse nicht, nachdem die Kommunikation abgeschlossen ist.",
+                        "Rechtsgrundlage für die Verarbeitung: Die Rechtsgrundlage für die Verarbeitung Ihrer personenbezogenen Daten ist Ihre Einwilligung, die Sie bei der Nutzung unseres Dienstes erteilen.",
+                        "Datenschutz: Wir setzen geeignete technische und organisatorische Maßnahmen um, um Ihre personenbezogenen Daten vor unbefugtem Zugriff, Offenlegung, Änderung oder Zerstörung zu schützen."
+                    ]
+                },
+                {
+                    "title": "Verwendung von Open-Source-AI-Modellen",
+                    "description": "Unsere Transkriptionsdienste verwenden Open-Source-AI-Modelle, einschließlich Pyannote und Whisper. Obwohl diese Modelle leistungsstarke Werkzeuge für die Transkription sind, sind wir nicht verantwortlich für Datenlecks oder Verstöße, die durch deren Nutzung auftreten können. Durch die Nutzung unseres Dienstes erklären Sie sich damit einverstanden, dass wir für solche Vorfälle nicht haftbar gemacht werden können."
+                }
+            ],
+            "contact": "Kontakt",
+            "contact_description": "Bei Fragen kontaktieren Sie uns unter <a href='mailto:ai@evertvannoort.com'>ai@evertvannoort.com</a>.",
+            "back": "Zurück"
+        }
+    }
+}

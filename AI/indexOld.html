@@ -67,12 +67,9 @@
 </form>
 
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-<!-- <script type="module" src="./config.js"></script> -->
-<script type="module">
-    import config from './config.js';
-
+<script>
     (function(){
-        emailjs.init(config.emailjsUserId); // Initialize EmailJS with user ID from config
+        emailjs.init("VfQnHi5XfW-5T-VNp"); // Replace with your EmailJS user ID
     })();
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -127,8 +124,7 @@
 
         updateLinks();
         loadLanguage(lang);
-        // const backendUrl = "https://api.evertvannoort.ngrok.app";
-        const backendUrl = "https://22aa-188-89-46-148.ngrok-free.app";
+        const backendUrl = "https://api.evertvannoort.ngrok.app";
         const uploadForm = document.getElementById('uploadForm');
         const submitButton = document.getElementById('submitButton');
         const errorDisplay = document.getElementById('errorDisplay');
@@ -265,10 +261,11 @@
             } catch (error) {
                 if (error.message === 'Failed to fetch') {
                     serverError.textContent = 'Thanks for using the service, the server will be running in the near future.';
-                    emailjs.send(config.emailjsServiceId, config.emailjsTemplateId, {
-                        to_name: config.toName,
-                        from_name: config.fromName,
-                        message: config.message
+
+                    emailjs.send("service_m47km58", "template_8fuz2bb", {
+                        to_name: "Evert van Noort",
+                        from_name: "Website",
+                        message: "Someone tried to use the service but the server is down."
                     })
                     .then(function(response) {
                         console.log('SUCCESS!', response.status, response.text);

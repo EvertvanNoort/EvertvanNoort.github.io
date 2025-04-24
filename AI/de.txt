@@ -1,0 +1,8 @@
+title:TranscribeForMe
+description:Laden Sie Ihre Audiodateien hoch und erhalten Sie genaue Transkriptionen innerhalb weniger Minuten! Verfügbar in Niederländisch, Englisch, Deutsch, Spanisch und mehr, für nur €0,60 pro Minute!
+upload:Datei hochladen
+detect:Erkennen
+email_placeholder:E-Mail-Adresse
+test:Testen, eine kostenlose Transkription der ersten 20 Sekunden
+submit:Bezahlen und Verarbeiten
+terms:Durch Klicken auf die Schaltfläche stimmen Sie der Zahlung und Verarbeitung zu. Sie akzeptieren die Allgemeinen Geschäftsbedingungen. TL;DR: Wir speichern Ihre Dateien oder E-Mail-Adresse nicht und Sie können keine Rückerstattung erhalten, wenn Sie nicht zuerst testen.
