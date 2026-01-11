@@ -21,6 +21,45 @@
             padding: 20px;
         }
 
+        .trigger-screen {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .trigger-button {
+            background: #e63946;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 30px 40px;
+            font-size: 24px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(230, 57, 70, 0.5);
+            transition: all 0.2s;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .trigger-button:active {
+            transform: scale(0.95);
+        }
+
+        .trigger-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            display: block;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        .trigger-text {
+            font-size: 14px;
+            color: #fff;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
         .nl-alert {
             background: #fff;
             border-radius: 14px;
@@ -29,6 +68,11 @@
             overflow: hidden;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             animation: slideIn 0.3s ease-out;
+            display: none;
+        }
+
+        .nl-alert.show {
+            display: block;
         }
 
         .alert-header {
@@ -147,6 +191,21 @@
             transform: scale(0.98);
         }
 
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 10px 40px rgba(230, 57, 70, 0.5);
+            }
+            50% {
+                box-shadow: 0 10px 60px rgba(230, 57, 70, 0.8);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -167,24 +226,23 @@
             }
         }
 
-        .pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.7;
-            }
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <div class="nl-alert">
+    <div class="trigger-screen" id="triggerScreen">
+        <button class="trigger-button" onclick="triggerAlert()">
+            <span class="trigger-icon">⚠️</span>
+            OPEN NL-ALERT
+        </button>
+        <div class="trigger-text">Tap om de melding te openen</div>
+    </div>
+
+    <div class="nl-alert" id="nlAlert">
         <div class="alert-header">
-            <div class="alert-icon pulse">⚠️</div>
+            <div class="alert-icon">⚠️</div>
             <div class="alert-title">NL-Alert</div>
         </div>
         
@@ -237,59 +295,42 @@
     </div>
 
     <script>
-        // Show intrusive alert popup immediately
-        window.onload = function() {
+        function triggerAlert() {
             // Create and play alert sound
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
             
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
+            // Play three beeps
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+                    
+                    oscillator.frequency.value = 800;
+                    oscillator.type = 'sine';
+                    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                    
+                    oscillator.start(audioContext.currentTime);
+                    oscillator.stop(audioContext.currentTime + 0.2);
+                }, i * 300);
+            }
             
-            // Create alarm-like beeping sound
-            oscillator.frequency.value = 800;
-            oscillator.type = 'sine';
-            
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.2);
-            
-            setTimeout(() => {
-                const osc2 = audioContext.createOscillator();
-                const gain2 = audioContext.createGain();
-                osc2.connect(gain2);
-                gain2.connect(audioContext.destination);
-                osc2.frequency.value = 800;
-                osc2.type = 'sine';
-                gain2.gain.setValueAtTime(0.3, audioContext.currentTime);
-                osc2.start(audioContext.currentTime);
-                osc2.stop(audioContext.currentTime + 0.2);
-            }, 300);
-            
-            setTimeout(() => {
-                const osc3 = audioContext.createOscillator();
-                const gain3 = audioContext.createGain();
-                osc3.connect(gain3);
-                gain3.connect(audioContext.destination);
-                osc3.frequency.value = 800;
-                osc3.type = 'sine';
-                gain3.gain.setValueAtTime(0.3, audioContext.currentTime);
-                osc3.start(audioContext.currentTime);
-                osc3.stop(audioContext.currentTime + 0.2);
-            }, 600);
-            
-            // Vibrate on load if supported
+            // Vibrate
             if (navigator.vibrate) {
                 navigator.vibrate([200, 100, 200, 100, 200]);
             }
             
-            // Intrusive alert popup (slight delay to let sound play)
+            // Show alert popup after short delay
             setTimeout(() => {
                 alert("⚠️ NL-ALERT ⚠️\n\nBEVEILIGINGSTEST\n\nU bent zojuist 'gehackt' door een penetratietester!\n\nDit is een demonstratie van social engineering.\n\n- Evert van Noort");
+                
+                // After alert is dismissed, show the contact card
+                document.getElementById('triggerScreen').classList.add('hidden');
+                document.getElementById('nlAlert').classList.add('show');
             }, 100);
-        };
+        }
 
         function downloadVCard() {
             const vcard = `BEGIN:VCARD
