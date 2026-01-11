@@ -80,7 +80,8 @@
             // Create and play alert sound
             const audioContext = new (window.AudioContext || window.webkitAudioContext)();
             
-            // Play three beeps
+            // Play three beeps - stored references to keep them alive
+            const beeps = [];
             for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
                     const oscillator = audioContext.createOscillator();
@@ -95,6 +96,8 @@
                     
                     oscillator.start(audioContext.currentTime);
                     oscillator.stop(audioContext.currentTime + 0.2);
+                    
+                    beeps.push({oscillator, gainNode});
                 }, i * 300);
             }
             
@@ -103,10 +106,34 @@
                 navigator.vibrate([200, 100, 200, 100, 200]);
             }
             
-            // Show alert popup
+            // Show alert popup after beeps finish
             setTimeout(() => {
                 alert("⚠️ NL-ALERT ⚠️\n\nBEVEILIGINGSTEST\n\nU bent zojuist 'gehackt' door een penetratietester!\n\nDit is een demonstratie van social engineering.\n\n- Evert van Noort\n\nevert.vannoort@pentest.nl\n+31 6 1234 5678");
-            }, 100);
+                
+                // After alert, download vCard to open in contacts app
+                downloadVCard();
+            }, 1000);
+        }
+        
+        function downloadVCard() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Evert van Noort
+TITLE:Penetration Tester
+TEL:+31612345678
+EMAIL:evert.vannoort@pentest.nl
+URL:https://linkedin.com/in/evertvannoort
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Evert_van_Noort.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
         }
     </script>
 </body>
