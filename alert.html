@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NL-Alert</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .nl-alert {
+            background: #fff;
+            border-radius: 14px;
+            max-width: 400px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .alert-header {
+            background: #e63946;
+            color: #fff;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .alert-icon {
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .alert-title {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .alert-body {
+            padding: 20px;
+        }
+
+        .alert-message {
+            font-size: 17px;
+            line-height: 1.5;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-time {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e0e0e0;
+            margin: 20px 0;
+        }
+
+        .contact-section {
+            animation: fadeIn 0.5s ease-out 0.3s both;
+        }
+
+        .contact-header {
+            font-size: 15px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 16px;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: #000;
+        }
+
+        .contact-value {
+            color: #007AFF;
+            word-break: break-all;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #007AFF;
+            color: #fff;
+        }
+
+        .btn-primary:active {
+            background: #0051D5;
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #000;
+        }
+
+        .btn-secondary:active {
+            background: #e0e0e0;
+            transform: scale(0.98);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nl-alert">
+        <div class="alert-header">
+            <div class="alert-icon pulse">⚠️</div>
+            <div class="alert-title">NL-Alert</div>
+        </div>
+        
+        <div class="alert-body">
+            <div class="alert-message">
+                <strong>BEVEILIGINGSTEST</strong><br><br>
+                U bent zojuist "gehackt" door een penetratietester. Dit is een demonstratie van social engineering.
+            </div>
+            
+            <div class="alert-time">
+                Verzonden: Nu
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="contact-section">
+                <div class="contact-header">Contact Informatie</div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">Naam:</span><br>
+                    Evert van Noort
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">Functie:</span><br>
+                    Penetration Tester
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">E-mail:</span><br>
+                    <span class="contact-value">evert.vannoort@pentest.nl</span>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">Telefoon:</span><br>
+                    <span class="contact-value">+31 6 1234 5678</span>
+                </div>
+                
+                <div class="contact-item">
+                    <span class="contact-label">LinkedIn:</span><br>
+                    <span class="contact-value">linkedin.com/in/evertvannoort</span>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="window.close()">Sluiten</button>
+                    <button class="btn btn-primary" onclick="downloadVCard()">Contact Opslaan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show intrusive alert popup immediately
+        window.onload = function() {
+            // Create and play alert sound
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            // Create alarm-like beeping sound
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.2);
+            
+            setTimeout(() => {
+                const osc2 = audioContext.createOscillator();
+                const gain2 = audioContext.createGain();
+                osc2.connect(gain2);
+                gain2.connect(audioContext.destination);
+                osc2.frequency.value = 800;
+                osc2.type = 'sine';
+                gain2.gain.setValueAtTime(0.3, audioContext.currentTime);
+                osc2.start(audioContext.currentTime);
+                osc2.stop(audioContext.currentTime + 0.2);
+            }, 300);
+            
+            setTimeout(() => {
+                const osc3 = audioContext.createOscillator();
+                const gain3 = audioContext.createGain();
+                osc3.connect(gain3);
+                gain3.connect(audioContext.destination);
+                osc3.frequency.value = 800;
+                osc3.type = 'sine';
+                gain3.gain.setValueAtTime(0.3, audioContext.currentTime);
+                osc3.start(audioContext.currentTime);
+                osc3.stop(audioContext.currentTime + 0.2);
+            }, 600);
+            
+            // Vibrate on load if supported
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200, 100, 200]);
+            }
+            
+            // Intrusive alert popup (slight delay to let sound play)
+            setTimeout(() => {
+                alert("⚠️ NL-ALERT ⚠️\n\nBEVEILIGINGSTEST\n\nU bent zojuist 'gehackt' door een penetratietester!\n\nDit is een demonstratie van social engineering.\n\n- Evert van Noort");
+            }, 100);
+        };
+
+        function downloadVCard() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Evert van Noort
+TITLE:Penetration Tester
+TEL:+31612345678
+EMAIL:evert.vannoort@pentest.nl
+URL:https://linkedin.com/in/evertvannoort
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Evert_van_Noort.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
