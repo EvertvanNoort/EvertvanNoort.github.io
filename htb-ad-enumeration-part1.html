@@ -394,7 +394,11 @@ Address         Port        Address         Port
 
     <p>After a few minutes we are left with a .zip that we copy to our attack machine and analyze it with bloodhound.</p>
 
+    <img src="/assets/img/1_TEgsxqWTIWVMbf-GYiFyRQ.png" alt="Snapshot from bloodhound" style="width:100%; border-radius:4px; border:1px solid #252830;">
+
     <p>In bloodhound we see that our user tpetty can perform a DCsync attack (!) and under Windows abuse we find directions to perform this attack:</p>
+
+    
 
     <div class="callout">
       <strong>BloodHound — Windows Abuse</strong>
@@ -402,7 +406,7 @@ Address         Port        Address         Port
       <code>lsadump::dcsync /domain:testlab.local /user:Administrator</code>
     </div>
 
-    <p>We upload mimikatz in our RPD session to the Desktop of tpetty. We run powershell as tpetty and are able to run mimikatz with the required privileges. Doing so we find the NTLM-hash for the administrator:</p>
+    <p>We upload mimikatz in our RDP session to the Desktop of tpetty. We run powershell as tpetty and are able to run mimikatz with the required privileges. Doing so we find the NTLM-hash for the administrator:</p>
 
     <div class="code-label">DCSync attack with mimikatz</div>
     <pre><code>PS C:\Windows\system32> cd C:\Users\tpetty
