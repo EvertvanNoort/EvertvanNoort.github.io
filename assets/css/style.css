@@ -22,8 +22,10 @@
   --color-primary: #6f3b23;
   --color-secondary: #c1610c;
   --color-background: #f7fbff;
-  --color-background-alt: #F6F0E7;
-  --color-text: #6f3b23;
+  --color-background-alt: #e0e0e0;
+  /*#F6F0E7;*/
+  --color-text: ##4d4d4d; 
+  /*#6f3b23; */
   --color-hover: #cab89f;
   --color-white: #f7fbff;
 }
@@ -60,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-  color: var(--color-primary);
+  color: var(--color-primary-alt);
   font-weight: 600;
 }
 
@@ -71,7 +73,7 @@ h4 {
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--color-primary-alt);
   text-decoration: none !important;
   transition: all 0.5s ease-in-out 0s;
 }
