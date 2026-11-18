@@ -24,7 +24,7 @@
   --color-background: #f7fbff;
   --color-background-alt: #e0e0e0;
   /*#F6F0E7;*/
-  --color-text: ##4d4d4d; 
+  --color-text: #4d4d4d; 
   /*#6f3b23; */
   --color-hover: #cab89f;
   --color-white: #f7fbff;
@@ -428,7 +428,9 @@ p {
 # Hero
 --------------------------------------------------------------*/
 #hero {
-  background: url("../img/home-bg.jpg") repeat scroll center center/cover;
+  /*background: url("../img/home-bg.jpg") repeat scroll center center/cover;*/
+  background: url("../img/Portrait.jpg") repeat scroll center center/cover;
+                  /*<img src="assets/img/Portrait.jpg" class="img-responsive"*/
   height: 100vh;
   width: 100%;
 }
@@ -799,16 +801,22 @@ p {
   background: var(--color-background-alt); /* Same background as About section */
   height: auto;
   width: 100%;
+  padding-top: 50px;
+
 }
 
 .contact-details {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding-top: 0;
 }
 
 .contact-details li {
   padding-bottom: 10px;
+}
+
+.contact-heading {
+  margin-top: 100px;   /* space above the heading, below the Cyber Security paragraph */
 }
 
 #contact input, #contact textarea {
